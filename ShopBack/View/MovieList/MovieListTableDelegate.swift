@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieListTableDelegate: NSObject, UITableViewDataSource {
+class MovieListTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private let viewModel: MovieListViewModelProtocol
     
@@ -22,9 +22,15 @@ class MovieListTableDelegate: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as MovieInfoTableViewCell
-        let data = viewModel.data(at: indexPath.row)
-        
+        cell.config(viewModel.data(at: indexPath.row))
+        if viewModel.isLoadNextPageIndex(indexPath.row) {
+            viewModel.loadNextPage()
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 104
     }
     
 }

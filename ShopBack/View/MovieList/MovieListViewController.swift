@@ -10,15 +10,46 @@ import UIKit
 
 class MovieListViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.register(cellType: MovieInfoTableViewCell.self)
+        }
+    }
     
-    var viewModel: MovieListViewModelProtocol!
+    var viewModel: MovieListViewModelProtocol! {
+        didSet {
+            tableViewDelegate = MovieListTableDelegate(viewModel)
+        }
+    }
+    private var tableViewDelegate: MovieListTableDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull Refresh")
+        refreshControl.addTarget(self, action: #selector(pullToRefreshAction), for: .valueChanged)
+        viewModel = MovieListViewModel()
+        viewModel.reloadAction = { [weak self] in
+            if refreshControl.isRefreshing {
+                refreshControl.endRefreshing()
+            }
+            self?.tableView.reloadData()
+        }
+        viewModel.errorAction = { error in
+            if refreshControl.isRefreshing {
+                refreshControl.endRefreshing()
+            }
+            print(error)
+        }
+        tableView.addSubview(refreshControl)
+        tableView.dataSource = tableViewDelegate
+        tableView.delegate = tableViewDelegate
+        viewModel.loadNextPage()
     }
 
+    @objc func pullToRefreshAction() {
+        viewModel.reloadAll()
+    }
 
 }
 

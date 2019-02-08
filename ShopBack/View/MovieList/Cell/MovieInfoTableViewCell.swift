@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieInfoTableViewCell: UITableViewCell, NibReusable {
 
@@ -25,8 +26,16 @@ class MovieInfoTableViewCell: UITableViewCell, NibReusable {
         // Configure the view for the selected state
     }
     
-    func config() {
-        
+    func config(_ info: MovieInfo) {
+        if let poster = info.posterPath {
+            posterImageView.kf.setImage(with: URL(string: poster.tmdbImage()))
+        } else if let backdrop = info.backdropPath {
+            posterImageView.kf.setImage(with: URL(string: backdrop.tmdbImage()))
+        } else {
+            posterImageView.image = nil
+        }
+        titleLabel.text = info.title
+        popularityLabel.text = "\(info.popularity)"
     }
     
 }

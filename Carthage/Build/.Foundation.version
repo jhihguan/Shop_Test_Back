@@ -1,0 +1,9 @@
+{
+  "commitish" : "3.3.1",
+  "iOS" : [
+    {
+      "name" : "PMKFoundation",
+      "hash" : "4db09d9fba57eeae4aad999c7a1d9a58b7f9f0c92db00cbb08603df9645d709d"
+    }
+  ]
+}

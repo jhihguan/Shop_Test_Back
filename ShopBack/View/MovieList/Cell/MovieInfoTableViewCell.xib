@@ -19,20 +19,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7WL-iK-leK">
-                        <rect key="frame" x="16" y="16" width="57.5" height="57.5"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7WL-iK-leK">
+                        <rect key="frame" x="16" y="16" width="38.5" height="57.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="7WL-iK-leK" secondAttribute="height" multiplier="1:1" id="4UG-DS-KeR"/>
+                            <constraint firstAttribute="width" secondItem="7WL-iK-leK" secondAttribute="height" multiplier="2:3" id="4UG-DS-KeR"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpJ-Qr-P4T">
-                        <rect key="frame" x="89.5" y="16" width="214.5" height="22.5"/>
+                        <rect key="frame" x="70.5" y="16" width="233.5" height="22.5"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3Q-0m-g3J">
-                        <rect key="frame" x="89.5" y="53.5" width="214.5" height="20"/>
+                        <rect key="frame" x="70.5" y="53.5" width="233.5" height="20"/>
                         <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
