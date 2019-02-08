@@ -22,8 +22,18 @@ class NetworkHandler {
         self.session = session
     }
     
-    func get(_ urlString: String) -> Promise<Data> {
-        guard let url = URL(string: urlString) else {
+    private func url(string: String, from parameters: [String: Any]) -> URL? {
+        var urlComponent = URLComponents(string: string)
+        var queryItems = parameters.map {
+            URLQueryItem(name: $0.key, value: "\($0.value)")
+        }
+        queryItems.append(URLQueryItem(name: "api_key", value: "a979f3b40602812876c025b41afba43c"))
+        urlComponent?.queryItems = queryItems
+        return urlComponent?.url
+    }
+    
+    func get(_ urlString: String, parameters: [String: Any]) -> Promise<Data> {
+        guard let url = url(string: urlString, from: parameters) else {
             return Promise.init(error: NetworkError.badUrl)
         }
         

@@ -38,7 +38,7 @@ class MovieListViewModel: MovieListViewModelProtocol {
         }
         self.isLoading = true
         firstly {
-            self.network.get("https://api.themoviedb.org/3/discover/movie?api_key=a979f3b40602812876c025b41afba43c&sort_by=release_date.desc&page=\(nextPage)")
+            self.network.get("https://api.themoviedb.org/3/discover/movie", parameters: ["sort_by": "release_date.desc", "page": nextPage])
         }.map { data -> MovieRoot in
             try JSONDecoder().decode(MovieRoot.self, from: data)
         }.done { [weak self] root in
