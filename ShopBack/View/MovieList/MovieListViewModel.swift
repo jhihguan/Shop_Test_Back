@@ -15,8 +15,8 @@ protocol MovieListViewModelProtocol {
     var selectAction: ((MovieDetailViewModelProtocol) -> Void)? { get set }
     func reloadAll()
     func loadNextPage()
-    func isLoadNextPageIndex(_ index: Int) -> Bool
-    func numberOfDatas() -> Int
+    func shouldLoadNextPageIndex(_ index: Int) -> Bool
+    func numberOfMovies() -> Int
     func data(at index: Int) -> MovieInfo
     func select(at index: Int)
 }
@@ -62,11 +62,11 @@ class MovieListViewModel: MovieListViewModelProtocol {
         loadNextPage()
     }
     
-    func isLoadNextPageIndex(_ index: Int) -> Bool {
+    func shouldLoadNextPageIndex(_ index: Int) -> Bool {
         return index == movies.count - 2
     }
     
-    func numberOfDatas() -> Int {
+    func numberOfMovies() -> Int {
         return movies.count
     }
     

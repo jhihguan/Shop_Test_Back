@@ -17,13 +17,13 @@ class MovieListTableDelegate: NSObject, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfDatas()
+        return viewModel.numberOfMovies()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as MovieInfoTableViewCell
         cell.config(viewModel.data(at: indexPath.row))
-        if viewModel.isLoadNextPageIndex(indexPath.row) {
+        if viewModel.shouldLoadNextPageIndex(indexPath.row) {
             viewModel.loadNextPage()
         }
         return cell

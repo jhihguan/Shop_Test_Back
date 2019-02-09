@@ -34,7 +34,7 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     func loadDetail() {
         firstly {
-        self.network.get("https://api.themoviedb.org/3/movie/\(info.id)", parameters: [:])
+            self.network.get("https://api.themoviedb.org/3/movie/\(info.id)", parameters: [:])
         }.map { data -> MovieDetail in
             try JSONDecoder().decode(MovieDetail.self, from: data)
         }.done { [weak self] detail in

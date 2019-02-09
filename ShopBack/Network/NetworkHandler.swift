@@ -32,7 +32,7 @@ class NetworkHandler {
         return urlComponent?.url
     }
     
-    func get(_ urlString: String, parameters: [String: Any]) -> Promise<Data> {
+    func get(_ urlString: String, parameters: [String: Any] = [:]) -> Promise<Data> {
         guard let url = url(string: urlString, from: parameters) else {
             return Promise.init(error: NetworkError.badUrl)
         }
