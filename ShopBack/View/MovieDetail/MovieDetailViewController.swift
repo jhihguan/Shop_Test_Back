@@ -56,7 +56,10 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-
+    @IBAction func bookAction(_ sender: Any) {
+        viewModel.showBook()
+    }
+    
     /*
     // MARK: - Navigation
 
