@@ -14,7 +14,7 @@ enum NetworkError: Error {
     case badUrl
 }
 
-class NetworkHandler {
+class NetworkHandler<Target: TargetType> {
     
     private let session: URLSession
     
@@ -22,30 +22,16 @@ class NetworkHandler {
         self.session = session
     }
     
-    private func url(string: String, from parameters: [String: Any]) -> URL? {
-        var urlComponent = URLComponents(string: string)
-        var queryItems = parameters.map {
-            URLQueryItem(name: $0.key, value: "\($0.value)")
-        }
-        queryItems.append(URLQueryItem(name: "api_key", value: "a979f3b40602812876c025b41afba43c"))
-        urlComponent?.queryItems = queryItems
-        return urlComponent?.url
-    }
-    
-    func get(_ urlString: String, parameters: [String: Any] = [:]) -> Promise<Data> {
-        guard let url = url(string: urlString, from: parameters) else {
-            return Promise.init(error: NetworkError.badUrl)
-        }
-        
+    func request(_ target: Target) -> Promise<Data> {
         return firstly {
-            session.dataTask(.promise, with: url).validate()
+            session.dataTask(.promise, with: try target.buildRequest()).validate()
             }.compactMap {
                 if $0.data.isEmpty {
                     return nil
                 } else {
                     return $0.data
                 }
-            }
+        }
     }
     
 }

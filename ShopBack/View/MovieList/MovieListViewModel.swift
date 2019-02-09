@@ -27,12 +27,12 @@ class MovieListViewModel: MovieListViewModelProtocol {
     var errorAction: ((Error) -> Void)?
     var selectAction: ((MovieDetailViewModelProtocol) -> Void)?
     private var nextPage: Int = 1
-    private let network: NetworkHandler
+    private let apiProvider: TmdbAPI
     private var movies: [MovieInfo]
     private var isLoading: Bool = false
-    init(network: NetworkHandler = .init()) {
+    init(api: TmdbAPI) {
         movies = []
-        self.network = network
+        self.apiProvider = api
     }
     
     func loadNextPage() {
@@ -41,9 +41,7 @@ class MovieListViewModel: MovieListViewModelProtocol {
         }
         self.isLoading = true
         firstly {
-            self.network.get("https://api.themoviedb.org/3/discover/movie", parameters: ["primary_release_date.lte": "2019-02-09", "sort_by": "release_date.desc", "page": nextPage])
-        }.map { data -> MovieRoot in
-            try JSONDecoder().decode(MovieRoot.self, from: data)
+            apiProvider.getList(page: nextPage)
         }.done { [weak self] root in
             self?.movies.append(contentsOf: root.results)
             self?.nextPage = root.page + 1
@@ -75,7 +73,7 @@ class MovieListViewModel: MovieListViewModelProtocol {
     }
     
     func select(at index: Int) {
-        selectAction?(MovieDetailViewModel(movies[index], network: network))
+        selectAction?(MovieDetailViewModel(movies[index], api: apiProvider))
     }
     
 }

@@ -28,7 +28,7 @@ class MovieListViewController: UIViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull Refresh")
         refreshControl.addTarget(self, action: #selector(pullToRefreshAction), for: .valueChanged)
-        viewModel = MovieListViewModel()
+        viewModel = MovieListViewModel(api: TmdbAPIProvider())
         viewModel.reloadAction = { [weak self] in
             if refreshControl.isRefreshing {
                 refreshControl.endRefreshing()

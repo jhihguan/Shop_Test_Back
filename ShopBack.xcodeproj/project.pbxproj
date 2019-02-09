@@ -38,6 +38,9 @@
 		2020D5A4220DF926001CE93B /* PMKFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2020D5A2220DF924001CE93B /* PMKFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2020D5A6220DFAED001CE93B /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2020D5A5220DFAED001CE93B /* StringExtensions.swift */; };
 		208C98F9220E8F9A00C43FD4 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C98F8220E8F9A00C43FD4 /* MovieDetailViewModel.swift */; };
+		208C98FB220F323000C43FD4 /* TmdbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C98FA220F323000C43FD4 /* TmdbAPI.swift */; };
+		208C98FE220F32C100C43FD4 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C98FD220F32C100C43FD4 /* TargetType.swift */; };
+		208C9900220F38CE00C43FD4 /* TmdbTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C98FF220F38CE00C43FD4 /* TmdbTarget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,9 @@
 		2020D5A2220DF924001CE93B /* PMKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKFoundation.framework; path = Carthage/Build/iOS/PMKFoundation.framework; sourceTree = "<group>"; };
 		2020D5A5220DFAED001CE93B /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		208C98F8220E8F9A00C43FD4 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		208C98FA220F323000C43FD4 /* TmdbAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmdbAPI.swift; sourceTree = "<group>"; };
+		208C98FD220F32C100C43FD4 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		208C98FF220F38CE00C43FD4 /* TmdbTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmdbTarget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,7 @@
 		2020D55B220DD392001CE93B /* ShopBack */ = {
 			isa = PBXGroup;
 			children = (
+				208C98FC220F32B600C43FD4 /* Protocol */,
 				2020D59D220DF170001CE93B /* Model */,
 				2020D596220DE9DD001CE93B /* Network */,
 				2020D588220DD7DA001CE93B /* View */,
@@ -233,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				2020D597220DE9ED001CE93B /* NetworkHandler.swift */,
+				208C98FA220F323000C43FD4 /* TmdbAPI.swift */,
+				208C98FF220F38CE00C43FD4 /* TmdbTarget.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -247,6 +256,14 @@
 				20011DB7220E83F9008B092A /* MovieSpokenLanguage.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		208C98FC220F32B600C43FD4 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				208C98FD220F32C100C43FD4 /* TargetType.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +370,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208C98FE220F32C100C43FD4 /* TargetType.swift in Sources */,
+				208C9900220F38CE00C43FD4 /* TmdbTarget.swift in Sources */,
 				2020D5A6220DFAED001CE93B /* StringExtensions.swift in Sources */,
 				2020D55F220DD392001CE93B /* MovieListViewController.swift in Sources */,
 				20011DB8220E83F9008B092A /* MovieSpokenLanguage.swift in Sources */,
@@ -360,6 +379,7 @@
 				2020D55D220DD392001CE93B /* AppDelegate.swift in Sources */,
 				2020D58B220DD879001CE93B /* MovieListViewModel.swift in Sources */,
 				2020D587220DD78C001CE93B /* NibLoadable.swift in Sources */,
+				208C98FB220F323000C43FD4 /* TmdbAPI.swift in Sources */,
 				20011DB6220E835A008B092A /* MovieGenre.swift in Sources */,
 				208C98F9220E8F9A00C43FD4 /* MovieDetailViewModel.swift in Sources */,
 				2020D583220DD74F001CE93B /* UITableViewExtensions.swift in Sources */,

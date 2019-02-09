@@ -25,18 +25,16 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
     var bookAction: ((String) -> Void)?
     
     private let info: MovieInfo
-    private let network: NetworkHandler
+    private let apiProvider: TmdbAPI
     
-    init(_ info: MovieInfo, network: NetworkHandler) {
-        self.network = network
+    init(_ info: MovieInfo, api: TmdbAPI) {
+        self.apiProvider = api
         self.info = info
     }
     
     func loadDetail() {
         firstly {
-            self.network.get("https://api.themoviedb.org/3/movie/\(info.id)", parameters: [:])
-        }.map { data -> MovieDetail in
-            try JSONDecoder().decode(MovieDetail.self, from: data)
+            apiProvider.getDetail(id: info.id)
         }.done { [weak self] detail in
             self?.successAction?(detail)
         }.catch { error in
