@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    func tmdbImage() -> String {
+    func tmdbImagePath() -> String {
         return "https://image.tmdb.org/t/p/w500\(self)"
     }
     

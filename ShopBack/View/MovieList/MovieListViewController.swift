@@ -41,6 +41,11 @@ class MovieListViewController: UIViewController {
             }
             print(error)
         }
+        viewModel.selectAction = { [weak self] vm in
+            let detail = MovieDetailViewController.storyboardViewController()
+            detail.viewModel = vm
+            self?.navigationController?.pushViewController(detail, animated: true)
+        }
         tableView.addSubview(refreshControl)
         tableView.dataSource = tableViewDelegate
         tableView.delegate = tableViewDelegate

@@ -12,19 +12,22 @@ import PromiseKit
 protocol MovieListViewModelProtocol {
     var reloadAction: (() -> Void)? { get set }
     var errorAction: ((Error) -> Void)? { get set }
+    var selectAction: ((MovieDetailViewModelProtocol) -> Void)? { get set }
     func reloadAll()
     func loadNextPage()
     func isLoadNextPageIndex(_ index: Int) -> Bool
     func numberOfDatas() -> Int
     func data(at index: Int) -> MovieInfo
+    func select(at index: Int)
 }
 
 class MovieListViewModel: MovieListViewModelProtocol {
     
     var reloadAction: (() -> Void)?
     var errorAction: ((Error) -> Void)?
+    var selectAction: ((MovieDetailViewModelProtocol) -> Void)?
     private var nextPage: Int = 1
-    private var network: NetworkHandler
+    private let network: NetworkHandler
     private var movies: [MovieInfo]
     private var isLoading: Bool = false
     init(network: NetworkHandler = .init()) {
@@ -38,7 +41,7 @@ class MovieListViewModel: MovieListViewModelProtocol {
         }
         self.isLoading = true
         firstly {
-            self.network.get("https://api.themoviedb.org/3/discover/movie", parameters: ["sort_by": "release_date.desc", "page": nextPage])
+            self.network.get("https://api.themoviedb.org/3/discover/movie", parameters: ["primary_release_date.lte": "2019-02-09", "sort_by": "release_date.desc", "page": nextPage])
         }.map { data -> MovieRoot in
             try JSONDecoder().decode(MovieRoot.self, from: data)
         }.done { [weak self] root in
@@ -69,6 +72,10 @@ class MovieListViewModel: MovieListViewModelProtocol {
     
     func data(at index: Int) -> MovieInfo {
         return movies[index]
+    }
+    
+    func select(at index: Int) {
+        selectAction?(MovieDetailViewModel(movies[index], network: network))
     }
     
 }

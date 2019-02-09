@@ -28,9 +28,9 @@ class MovieInfoTableViewCell: UITableViewCell, NibReusable {
     
     func config(_ info: MovieInfo) {
         if let poster = info.posterPath {
-            posterImageView.kf.setImage(with: URL(string: poster.tmdbImage()))
+            posterImageView.kf.setImage(with: URL(string: poster.tmdbImagePath()))
         } else if let backdrop = info.backdropPath {
-            posterImageView.kf.setImage(with: URL(string: backdrop.tmdbImage()))
+            posterImageView.kf.setImage(with: URL(string: backdrop.tmdbImagePath()))
         } else {
             posterImageView.image = nil
         }
