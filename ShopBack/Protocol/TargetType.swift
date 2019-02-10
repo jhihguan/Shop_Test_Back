@@ -62,7 +62,7 @@ extension TargetType {
     private func url(string: String, from parameters: [String: Any]) -> URL? {
         var urlComponent = URLComponents(string: string)
         var queryItems = parameters.map {
-            URLQueryItem(name: $0.key, value: "\($0.value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
+            URLQueryItem(name: $0.key, value: "\($0.value)")
         }
         queryItems.append(URLQueryItem(name: "api_key", value: "a979f3b40602812876c025b41afba43c"))
         urlComponent?.queryItems = queryItems
